@@ -17,7 +17,7 @@ for unique in "${REQUIRED[@]}"; do
   fi
 done
 
-rm /etc/nginx/conf.d/default.conf
-cp /usr/proxy/configs/redirect-all-traffic.conf /etc/nginx/conf.d/
+#rm /etc/nginx/conf.d/default.conf
+cp /usr/proxy/configs/redirect-all-traffic.conf /usr/local/nginx/conf.d/
 
 /usr/bin/nginx.sh

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "Starting nginx..."
-/usr/sbin/nginx
+/usr/local/nginx/nginx

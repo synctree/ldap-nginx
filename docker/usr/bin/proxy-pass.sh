@@ -16,7 +16,6 @@ for unique in "${REQUIRED[@]}"; do
   fi
 done
 
-rm /etc/nginx/conf.d/default.conf
-cp /usr/proxy/configs/proxy-pass.conf /etc/nginx/conf.d/
+cp /usr/proxy/configs/proxy-pass.conf /usr/local/nginx/conf.d/
 
 /usr/bin/nginx.sh

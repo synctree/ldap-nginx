@@ -10,6 +10,10 @@ basic-auth)
   echo "Starting Basic Auth Proxy..."
   /usr/bin/basic-auth.sh
   ;;
+ldap-auth)
+  echo "Starting LDAP Auth Proxy..."
+  /usr/bin/ldap-auth.sh
+  ;;
 proxy-pass)
   echo "Starting Proxy Pass..."
   /usr/bin/proxy-pass.sh
