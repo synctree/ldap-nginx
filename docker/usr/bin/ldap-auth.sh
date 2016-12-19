@@ -24,7 +24,7 @@ for unique in "${NGINX[@]}"; do
   if [ "$unique_value" ]; then
     echo "Updating Value in Config: $unique"
     sed_escaped_value="$(echo "$unique_value" | sed 's/[\/&]/\\&/g')"
-    sed -ri "s/$unique/$sed_escaped_value/" /usr/proxy/configs/basic-auth.conf
+    sed -ri "s/$unique/$sed_escaped_value/" /usr/proxy/configs/ldap-auth.conf
   else
     echo >&2 "Required Value '$unique' must be set"
     echo >&2 "Goodbye!"
@@ -35,6 +35,6 @@ done
 echo "Creating passwords file..."
 printf "${USERNAME}:$(openssl passwd -crypt ${PASSWORD})\n" > /usr/local/nginx/passwords
 
-cp /usr/proxy/configs/basic-auth.conf /usr/local/nginx/conf.d/
+cp /usr/proxy/configs/ldap-auth.conf /usr/local/nginx/conf.d/
 
 /usr/bin/nginx.sh

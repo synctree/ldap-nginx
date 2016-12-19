@@ -65,6 +65,7 @@ RUN cd /usr/proxy/dependencies \
     --with-pcre=../pcre-8.39 \
     --with-zlib=../zlib-1.2.8 \
     --with-http_ssl_module \
+    --with-http_auth_request_module \
     --with-stream \
     --add-module=/usr/proxy/dependencies/nginx-auth-ldap \
   && make \
