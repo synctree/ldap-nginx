@@ -4,6 +4,7 @@ MAINTAINER Synctree Appforce
 RUN apt-get update \
   && apt-get install -y \
     git \
+    pip \
     wget \
     unzip \
     supervisor \
@@ -14,6 +15,8 @@ RUN apt-get update \
 RUN mkdir -p /usr/proxy/configs /usr/proxy/dependencies /usr/proxy/ldap-auth-module
 
 WORKDIR /usr/proxy
+
+RUN pip install python-ldap
 
 # NGINX dependencies:
 # PCRE
@@ -47,12 +50,6 @@ RUN cd /usr/proxy/dependencies \
   && make \
   && make install
 
-# nginx-auth-ldap
-RUN cd /usr/proxy/dependencies \
-  && wget https://github.com/kvspb/nginx-auth-ldap/archive/master.zip -O nginx-auth-ldap.zip \
-  && unzip nginx-auth-ldap.zip \
-  && mv nginx-auth-ldap-master nginx-auth-ldap
-
 # NGINX stable
 RUN cd /usr/proxy/dependencies \
   && wget http://nginx.org/download/nginx-1.10.2.tar.gz \
@@ -70,6 +67,11 @@ RUN cd /usr/proxy/dependencies \
     --add-module=/usr/proxy/dependencies/nginx-auth-ldap \
   && make \
   && make install
+
+# nginx-auth-ldap
+RUN cd /usr/proxy/dependencies \
+  && wget https://github.com/nginxinc/nginx-ldap-auth/archive/master.zip -O nginx-auth-ldap.zip \
+  && unzip nginx-auth-ldap.zip
 
 RUN mkdir -p /usr/local/nginx/conf.d
 
