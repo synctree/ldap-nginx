@@ -14,6 +14,10 @@ ldap-auth)
   echo "Starting LDAP Auth Proxy..."
   /usr/bin/ldap-auth.sh
   ;;
+es-ldap-auth)
+  echo "Starting ES LDAP Auth Proxy..."
+  /usr/bin/es-ldap-auth.sh
+  ;;
 proxy-pass)
   echo "Starting Proxy Pass..."
   /usr/bin/proxy-pass.sh
