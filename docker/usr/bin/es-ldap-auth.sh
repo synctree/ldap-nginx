@@ -33,6 +33,30 @@ for unique in "${NGINX[@]}"; do
   fi
 done
 
+# Adding any LDAP_GROUP_* group ACLs
+for unique in `printenv | grep LDAP_GROUP_ | awk -F '"' '{print $2}'`; do
+  if [ "$unique" ]; then
+    added_acl="require group \"$unique\";"
+    echo "Adding Group ACL: $added_acl"
+    sed -i "/LDAP_GROUP_ACLS/a \
+\ \ \ \ $added_acl" /usr/proxy/configs/ldap-nginx.conf
+  else
+    echo >&2 "This should never be seen. $unique => $unique_value"
+  fi
+done
+
+# Adding any LDAP_USER_* group ACLs
+for unique in `printenv | grep LDAP_USER_ | awk -F '"' '{print $2}'`; do
+  if [ "$unique" ]; then
+    added_acl="require user \"$unique\";"
+    echo "Adding User ACL: $added_acl"
+    sed -i "/LDAP_USER_ACLS/a \
+\ \ \ \ $added_acl" /usr/proxy/configs/ldap-nginx.conf
+  else
+    echo >&2 "This should never be seen. $unique => $unique_value"
+  fi
+done
+
 LDAP=(
   TARGET_URL
   LDAP_SEARCH_URL
