@@ -37,9 +37,9 @@ RUN cd /usr/proxy/dependencies \
 
 # zlib
 RUN cd /usr/proxy/dependencies \
-  && wget http://zlib.net/zlib-1.2.8.tar.gz \
-  && tar -zxf zlib-1.2.8.tar.gz \
-  && cd zlib-1.2.8 \
+  && wget http://zlib.net/zlib-1.2.11.tar.gz \
+  && tar -zxf zlib-1.2.11.tar.gz \
+  && cd zlib-1.2.11 \
   && ./configure \
   && make \
   && make install
@@ -72,7 +72,7 @@ RUN cd /usr/proxy/dependencies \
     --http-client-body-temp-path=/var/cache/nginx/client_temp \
     --http-proxy-temp-path=/var/cache/nginx/proxy_temp \
     --with-pcre=../pcre-8.39 \
-    --with-zlib=../zlib-1.2.8 \
+    --with-zlib=../zlib-1.2.11 \
     --with-http_ssl_module \
     --with-http_realip_module \
     --with-http_addition_module \
