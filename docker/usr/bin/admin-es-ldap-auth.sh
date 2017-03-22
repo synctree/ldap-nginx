@@ -25,7 +25,7 @@ for unique in "${NGINX[@]}"; do
   if [ "$unique_value" ]; then
     echo "Updating Value in LDAP Config: $unique"
     sed_escaped_value="$(echo "$unique_value" | sed 's/[\/&]/\\&/g')"
-    sed -ri "s/$unique/$sed_escaped_value/" /usr/proxy/configs/es-ldap-auth.conf
+    sed -ri "s/$unique/$sed_escaped_value/" /usr/proxy/configs/admin-es-ldap-auth.conf
   else
     echo >&2 "Required Value '$unique' must be set"
     echo >&2 "Goodbye!"
@@ -79,6 +79,6 @@ done
 
 mv /usr/local/nginx/nginx.conf /usr/local/nginx/nginx.conf.BAK
 cp /usr/proxy/configs/ldap-nginx.conf /usr/local/nginx/nginx.conf
-cp /usr/proxy/configs/es-ldap-auth.conf /usr/local/nginx/conf.d/
+cp /usr/proxy/configs/admin-es-ldap-auth.conf /usr/local/nginx/conf.d/
 
 /usr/bin/nginx.sh
